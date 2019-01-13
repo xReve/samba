@@ -2,10 +2,7 @@
 
 ## @edt ASIX M06 2018-2019
 
-Podeu trobar les imatges docker al Dockehub de [edtasixm06](https://hub.docker.com/u/edtasixm06/)
-
-Podeu trobar la documentació del mòdul a [ASIX-M06](https://sites.google.com/site/asixm06edt/)
-
+Podeu trobar les imatges docker al Dockehub de [eescriba](https://hub.docker.com/u/eescriba/)
 
 ASIX M06-ASO Escola del treball de barcelona
 
@@ -22,9 +19,9 @@ servidor de disc extern cal:
 
   * **sambanet** Una xarxa propia per als containers implicats.
 
-  * **edtasixm06/ldapserver:18samba** Un servidor ldap en funcionament amb els usuaris de xarxa.
+  * **eescriba/ldapserver:18samba** Un servidor ldap en funcionament amb els usuaris de xarxa.
 
-  * **edtasixm06/samba:18ldapsam** Un servidor samba que utilitza *ldapsam* com a backend.
+  * **eescriba/samba:18ldapsam** Un servidor samba que utilitza *ldapsam* com a backend.
 Exporta els homes dels usuaris com a shares via *[homes]*. Aquest servidor està configurat per tenir
 usuaris locals i usuaris LDAP. Està configurat correctament l'accés al servidor LDAP.
 Contindrà:
@@ -74,11 +71,11 @@ Sol·licita establir el password amb el que samba contactarà amb ldap.
 
 ```
 docker network create sambanet
-docker run --rm --name ldap -h ldap --net sambanet -d edtasixm06/ldapserver:18samba
+docker run --rm --name ldap -h ldap --network sambanet -d eescriba/ldapserver:18samba
 
-docker run --rm --name samba -h samba --net sambanet -it edtasixm06/samba:18ldapsam
+docker run --rm --name samba -h samba --network sambanet -it eescriba/samba:18ldapsam
 
-docker run --rm --name host -h host --net sambanet -it edtasixm06/hostpam:18homenfs  #canviar per :18homesamba
+docker run --rm --name host -h host --network sambanet -it eescriba/hostpam:18homesamba
 ```
 
 #### Configuració samba
@@ -91,7 +88,7 @@ docker run --rm --name host -h host --net sambanet -it edtasixm06/hostpam:18home
         log file = /var/log/samba/log.%m
         max log size = 50
         security = user
-        passdb backend = ldapsam:ldap://172.21.0.2
+        passdb backend = ldapsam:ldap://172.20.0.2
           ldap suffix = dc=edt,dc=org
           ldap user suffix = ou=usuaris
           ldap group suffix = ou=grups
@@ -188,12 +185,12 @@ masterPw="secret"
 # Slave LDAP server URI
 # Ex: slaveLDAP=ldap://slave.ldap.example.com/
 # If not defined, parameter is set to "ldap://127.0.0.1/"
-slaveLDAP="ldap://172.21.0.2/"
+slaveLDAP="ldap://172.20.0.2/"
 
 # Master LDAP server URI: needed for write operations
 # Ex: masterLDAP=ldap://master.ldap.example.com/
 # If not defined, parameter is set to "ldap://127.0.0.1/"
-masterLDAP="ldap://172.21.0.2/"
+masterLDAP="ldap://172.20.0.2/"
 
 # Use TLS for LDAP
 # If set to 1, this option will use start_tls for connection
@@ -263,18 +260,13 @@ password_hash="SSHA"
 
 ```
 
-#### Exemple en el hostpam
+#### Exemple mount home samba
 ```
-[root@host docker]# su - local01
 
-[local01@host ~]$ su - anna
-pam_mount password:
+root@xarlio:~/samba/samba# mount -t cifs //172.20.0.4/pere /mnt
+Password for root@//172.20.0.4/pere:  ******
+root@xarlio:~/samba/samba# mount -t cifs
+//172.20.0.4/pere on /mnt type cifs (rw,relatime,vers=default,cache=strict,username=root,domain=,uid=0,noforceuid,gid=0,noforcegid,addr=172.20.0.4,file_mode=0755,dir_mode=0755,soft,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,echo_interval=60,actimeo=1)
 
-[anna@host ~]$ ll
-total 0
-drwxr-xr-x+ 2 anna alumnes 0 Dec 14 20:27 anna
-
-[anna@host ~]$ mount -t cifs
-//samba2/anna on /tmp/home/anna/anna type cifs (rw,relatime,vers=1.0,cache=strict,username=anna,domain=,uid=5002,forceuid,gid=600,forcegid,addr=172.21.0.2,unix,posixpaths,serverino,mapposix,acl,rsize=1048576,wsize=65536,echo_interval=60,actimeo=1)
 ```
 

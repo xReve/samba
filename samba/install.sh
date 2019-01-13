@@ -49,8 +49,6 @@ chown -R pere.users /tmp/home/pere
 chown -R pau.users /tmp/home/pau
 chown -R anna.alumnes /tmp/home/anna
 chown -R marta.alumnes /tmp/home/marta
-chown -R jordi.users /tmp/home/jordi
-chown -R admin.wheel /tmp/home/admin
 
 # -----------------------------------------------------------
 mkdir /var/lib/samba/public
@@ -67,10 +65,17 @@ useradd lila
 useradd roc
 useradd pla
 
-echo -e "patipla\npatipla" | smbpasswd -a patipla
-echo -e "lila\nlila" | smbpasswd -a lila
-echo -e "roc\nroc" | smbpasswd -a roc
-echo -e "pla\npla" | smbpasswd -a pla
+# -----------------------------------------------------------
+cp /opt/docker/smbldap.conf /etc/smbldap-tools/.
+cp /opt/docker/smbldap_bind.conf /etc/smbldap-tools/.
+smbpasswd -w secret
+net getlocalsid
+net getdomainsid
+#pdbedit -L
+#pdbedit -Lv
+#smbldap-userlist
+echo -e "jupiter\njupiter" | smbldap-populate
+pdbedit -L
 
 echo -e "pere\npere" | smbpasswd -a pere
 echo -e "pau\npau" | smbpasswd -a pau
@@ -79,4 +84,6 @@ echo -e "marta\nmarta" | smbpasswd -a marta
 echo -e "jordi\njordi" | smbpasswd -a jordi
 echo -e "admin\nadmin" | smbpasswd -a admin
 
+pdbedit -L
+#pdbedit -Lv
 
