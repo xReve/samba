@@ -9,6 +9,13 @@ docker run --rm --privileged --name host -h host --network sambanet -it eescriba
 
 ```
 
+MOUNT TYPE **CIFS**
+
+```
+<volume user="*" fstype="cifs" server="samba" path="%(USER)" mountpoint="~/%(USER)" />
+
+```
+
 ## EXEMPLE
 
 ```
