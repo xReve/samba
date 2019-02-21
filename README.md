@@ -9,8 +9,11 @@ Les imatges es troben disponibles a [eescriba](https://hub.docker.com/u/eescriba
 
 Pràctica d'integració de les tecnologies PAM, LDAP i SAMBA. En aquesta part hem creat un servidor SAMBA capaç de connectar a un servidor LDAP i exportar directoris HOME d'usuaris locals i LDAP.
 Per a això necessitem un servidor LDAP (el mateix usat en pràctiques anteriors), un servidor SAMBA i un client amb LDAP i PAM configurats
+
 Aquests 3 dockers estan communicats entre si a traves de la xarxa **sambanet**.
+
 **NOTA**
+
 Aquesta activitat ha estat realitzat sobre la xarxa sambanet, aixo no impedeix que l'arquitectura no pugi funcionar sobre una altra xarxa personlitzada de l'usuari.
 
 **QUICK TUTORIAL**
@@ -110,6 +113,7 @@ shm              64M     0   64M   0% /dev/shm
 - MONTAR EL HOME DE UN USUARI A /mnt
 
 **NOTA**
+
 Montem el recurs a traves del servidor anomenat **samba** pero això no es pot fer si no tens un DNS que apunti a la direcció en que esta el servidor samba. 
 És a dir afegim la següent linia al fitxer `/etc/hosts`:
 
