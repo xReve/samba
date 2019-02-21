@@ -43,11 +43,14 @@ Per a LDAP
 **/sbin/slapd** 
 
 
-### Imatges
+
+### IMATGES
 
 
 **eescriba/ldapserver:18samba**   Servidor LDAP que te emmagatzemats els usuaris 
+
 **eescriba/sambahost:18homes**   Maquina client per treballar
+
 **eescriba/samba:18homes**  Servidor Samba que comparteix els homes dels usuaris LDAP i locals.
 
 
