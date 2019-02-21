@@ -13,11 +13,7 @@
 <debug enable="0" />
 
 		<!-- Volume definitions -->
-
-		<!-- <volume user="*" fstype="tmpfs" mountpoint="~/test" options="size=10M,uid=%(USER),mode=0755" /> -->
-
-		<volume user="*" fstype="cifs" server="samba" path="%(USER)"  mountpoint="~/%(USER)" />
-
+<volume user="*" fstype="cifs" server="samba" path="%(USER)" mountpoint="~/%(USER)" />
 		<!-- pam_mount parameters: General tunables -->
 
 <!--
