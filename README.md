@@ -59,7 +59,7 @@ Per a LDAP
 ```
 
 **LDAP**
-docker run --name ldap -h ldap --network sambanet -d eescriba/ldapserver:18samba
+docker run --rm --name ldap -h ldap --network sambanet -d eescriba/ldapserver:18samba
 
 **HOST**
 docker run --rm --privileged --name host -h host --network sambanet -it eescriba/sambahost:18homes

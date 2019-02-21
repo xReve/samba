@@ -34,6 +34,6 @@ objectclass: posixGroup
 #### Execució
 
 ```
-docker run --name ldap -h ldap --network sambanet -d eescriba/ldapserver:18samba
+docker run --rm --name ldap -h ldap --network sambanet -d eescriba/ldapserver:18samba
 
 ```
