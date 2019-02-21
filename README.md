@@ -12,19 +12,39 @@ Per a això necessitem un servidor LDAP (el mateix usat en pràctiques anteriors
 
 **QUICK TUTORIAL**
 
+Generem 3 imatges a traves dels Dockerfiles correctament configurats un per cada tasca: ldap,client i samba.
 
+Configurem la connexió al servidor LDAP (ldap.conf,slapd.conf) i afegim dades (populate)
 
+Preparem el docker client per poder establir connexió amb LDAP mitjançant els fitxers `nslcd.conf`,`nsswitch.conf` i `ldap.conf`
+
+Configurem perque aquest pugi montar homes mitjançant els fitxers `system-auth` i `pam_mount.conf.xml`
+
+Creem la configuració de SAMBA `/etc/samba/smb.conf`
+
+Creem els usuaris SAMBA, els directoris que es van a compartir i els assignem els permisos adequats.
+
+Finalment arranquem els dimonis...
+
+Per al Client:
+**/usr/sbin/nslcd**
+**/usr/sbin/nscd**
+
+Per a Samba:
+**/usr/sbin/smbd**
+**/usr/sbin/nmbd**
+
+Per a LDAP
+**/sbin/slapd** 
 
 
 ### Imatges
 
-```
+
 **eescriba/ldapserver:18samba**   Servidor LDAP que te emmagatzemats els usuaris 
 **eescriba/sambahost:18homes**   Maquina client per treballar
 **eescriba/samba:18homes**  Servidor Samba que comparteix els homes dels usuaris LDAP i locals.
 
-
-```
 
 ### EXECUCIÓ
 
