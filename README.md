@@ -27,14 +27,19 @@ Creem els usuaris SAMBA, els directoris que es van a compartir i els assignem el
 Finalment arranquem els dimonis...
 
 Per al Client:
+
 **/usr/sbin/nslcd**
+
 **/usr/sbin/nscd**
 
 Per a Samba:
+
 **/usr/sbin/smbd**
+
 **/usr/sbin/nmbd**
 
 Per a LDAP
+
 **/sbin/slapd** 
 
 
