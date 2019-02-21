@@ -80,7 +80,7 @@ docker run --rm --name samba -h samba --network sambanet -it eescriba/samba:18ho
 
 **EXEMPLES:**
 
-- ENTRAR AL HOST COM UN USUARI UNIX
+- ENTRAR AL HOST COM UN USUARI LDAP
 
 ```
 
