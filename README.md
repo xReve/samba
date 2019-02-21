@@ -9,6 +9,9 @@ Les imatges es troben disponibles a [eescriba](https://hub.docker.com/u/eescriba
 
 Pràctica d'integració de les tecnologies PAM, LDAP i SAMBA. En aquesta part hem creat un servidor SAMBA capaç de connectar a un servidor LDAP i exportar directoris HOME d'usuaris locals i LDAP.
 Per a això necessitem un servidor LDAP (el mateix usat en pràctiques anteriors), un servidor SAMBA i un client amb LDAP i PAM configurats
+Aquests 3 dockers estan communicats entre si a traves de la xarxa **sambanet**.
+**NOTA**
+Aquesta activitat ha estat realitzat sobre la xarxa sambanet, aixo no impedeix que l'arquitectura no pugi funcionar sobre una altra xarxa personlitzada de l'usuari.
 
 **QUICK TUTORIAL**
 
@@ -106,12 +109,22 @@ shm              64M     0   64M   0% /dev/shm
 
 - MONTAR EL HOME DE UN USUARI A /mnt
 
+**NOTA**
+Montem el recurs a traves del servidor anomenat **samba** pero això no es pot fer si no tens un DNS que apunti a la direcció en que esta el servidor samba. 
+És a dir afegim la següent linia al fitxer `/etc/hosts`:
+
 ```
-root@xarlio:~/samba_homes# mount -t cifs -o "user=marta" //172.20.0.4/marta /tmp
-Password for marta@//172.20.0.4/marta:  # La passwd es smbmarta 
+#IP_SAMBA_SERVER    samba
+
+```
+
+
+```
+root@xarlio:~/samba_homes# mount -t cifs -o "user=marta" //samba/marta /tmp
+Password for marta@//samba/marta:  # La passwd es smbmarta 
 
 root@xarlio:~/samba_homes# mount -t cifs
-//172.20.0.4/marta on /tmp type cifs (rw,relatime,vers=default,cache=strict,username=marta,uid=0,noforceuid,gid=0,noforcegid,addr=172.20.0.4,file_mode=0755,dir_mode=0755,soft,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,echo_interval=60,actimeo=1,user=marta)
+//samba/marta on /tmp type cifs (rw,relatime,vers=default,cache=strict,username=marta,uid=0,noforceuid,gid=0,noforcegid,addr=172.20.0.4,file_mode=0755,dir_mode=0755,soft,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,echo_interval=60,actimeo=1,user=marta)
 
 
 ```
