@@ -83,29 +83,18 @@ docker run --rm --privileged --name host -h host --network sambanet -it eescriba
 
 ```
 
-[root@host docker]# su - pau
-Creating directory '/tmp/home/pau'.
-reenter password for pam_mount:
-[pau@host ~]$ df -h
+[local02@host ~]$ su - pere
+Password: 
+Creating directory '/tmp/home/pere'.
+
+[pere@host ~]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
-overlay         370G   52G  300G  15% /
+overlay         370G   92G  260G  27% /
 tmpfs            64M     0   64M   0% /dev
 tmpfs           3.9G     0  3.9G   0% /sys/fs/cgroup
-/dev/sda5       370G   52G  300G  15% /etc/hosts
+/dev/sda5       370G   92G  260G  27% /etc/hosts
 shm              64M     0   64M   0% /dev/shm
-//samba/pau     370G   71G  300G  19% /tmp/home/pau/pau
-[pau@host ~]$ mount -t cifs
-//samba/pau on /tmp/home/pau/pau type cifs (rw,relatime,vers=default,cache=strict,username=pau,uid=5000,forceuid,gid=100,forcegid,addr=172.20.0.4,file_mode=0755,dir_mode=0755,soft,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,echo_interval=60,actimeo=1)
-
-
-```
-
-- ENTRAR AL HOST COM UN USUARI LOCAL
-
-```
-[local01@host ~]$ mount -t cifs
-//samba/local01 on /home/local01/local01 type cifs (rw,relatime,vers=default,cache=strict,username=local01,uid=1000,forceuid,gid=100,forcegid,addr=172.20.0.4,file_mode=0755,dir_mode=0755,soft,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,echo_interval=60,actimeo=1)
-
+//samba/pere    370G  111G  260G  30% /tmp/home/pere/pere
 
 ```
 
