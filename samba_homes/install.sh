@@ -71,17 +71,14 @@ echo -e "pla\npla" | smbpasswd -a pla
 
 # users ldap 
 
-echo -e "smbpere\nsmbpere" | smbpasswd -a pere
-echo -e "smbpau\nsmbpau" | smbpasswd -a pau
-echo -e "smbanna\nsmbanna" | smbpasswd -a anna
-echo -e "smbmarta\nsmbmarta" | smbpasswd -a marta
-echo -e "smbjordi\nsmbjordi" | smbpasswd -a jordi
-echo -e "smbadmin\nsmbadmin" | smbpasswd -a admin
+echo -e "pere\npere" | smbpasswd -a pere
+echo -e "pau\npau" | smbpasswd -a pau
+echo -e "anna\nanna" | smbpasswd -a anna
+echo -e "marta\nmarta" | smbpasswd -a marta
+echo -e "jordi\njordi" | smbpasswd -a jordi
+echo -e "admin\nadmin" | smbpasswd -a admin
 
 
-# users locals 
-echo -e "smblocal01\nsmblocal01" | smbpasswd -a local01
-echo -e "smblocal02\nsmblocal02" | smbpasswd -a local02
 
 
 
