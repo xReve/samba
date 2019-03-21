@@ -22,8 +22,7 @@ cp README.md /tmp/home/anna
 cp README.md /tmp/home/marta
 cp README.md /tmp/home/jordi
 cp README.md /tmp/home/admin
-cp README.md /tmp/home/local01
-cp README.md /tmp/home/local02
+
 
 
 chown -R pere.users /tmp/home/pere
@@ -32,8 +31,7 @@ chown -R anna.alumnes /tmp/home/anna
 chown -R marta.alumnes /tmp/home/marta
 chown -R jordi.users /tmp/home/jordi
 chown -R admin.wheel /tmp/home/admin
-chown -R local01.users /tmp/home/local01
-chown -R local02.users /tmp/home/local02
+
 
 ```
 
